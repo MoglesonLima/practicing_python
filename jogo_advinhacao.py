@@ -45,21 +45,3 @@ while laco_inicio:
         laco_inicio =  False
     else:
         play = input("Resposta invalida, introduza um valor válido (S/N): ")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Problema git
-#git pull origin master --allow-unrelated-histories
