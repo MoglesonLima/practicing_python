@@ -1,58 +1,65 @@
 # -*- coding: UTF-8 -*-
 
-#import random, específicando o pack randint
+#import
 from random import randint
 
-#Verificação Respostas válidas(S/N)
-def verficarResp(respUser):
-    if ((respUser == "S") or (respUser == "s") or (respUser == "N") or (respUser == "n")):
-        respUser = True
-    else:
-        respUser = False
-    return respUser
- 
-#Função pra testar
-def testarChut(numero, chut):
-    if  numero == chut:
-        test = True
-    else:
-        test = False
-    return test
+#Pergunta
+play = input("Vamos jogar (S/N): ")  
 
-#Verificar Type
-def verficarTipo(chut):
-    if  type(chut) ==  int:
-        tipoInt = True
-    else:
-        tipoInt = False
-    return tipoInt
-
-#implementação
-resp = input("Vamos jogar? (S/N)\n: ")
-
-varBoolean = True
-
-while varBoolean == True:
-    #Verificando se a variável resp é válida
-    if verficarResp(resp):
-        if ((resp == "s") or (resp == "S")):
-            print("Vamos lá, realizando o sorteio!")
-            valor = randint(0,10)
+laco_inicio = True
+while laco_inicio:
+    
+    #Verificar S e N
+    yes_play = (play == "S") or (play == "s")
+    not_play = (play == "N") or (play == "n")
+    
+    if yes_play:
+        print("Vamos começar!")
+        num_random = randint(0, 10)
+        
+        #Verificando se é int
+        ver_seInt = True
+        while ver_seInt:
             try:
-                chut = int(input("Digite um valor entre de 0 há 10: "))
-                #Verificando se o chut
-                while True:
-                    if testarChut(valor, chut):
-                        resp = input("Parabéns você acertou, vamos continuar? (S/N): ")
-                        break
-                    else:
-                        chut = int(input("Você errou, tente novamente: "))
-             
-            #Excessão caso o tipo chut não seja int
+                chut = int(input("Digite um valor de 1 a 10: "))
+                ver_seInt = False
             except ValueError:
-                print("Valor invalido, introduza um Nº inteiro!")
-        elif((resp == "n") or (resp == "N")):
-            print("Vlw... Até logo!")
-            varBoolean  = False
+                print("Valor not int!...")     
+        
+        #Verificar chut
+        laco_chut = True
+        while laco_chut:
+            verificar_chut = (chut == num_random)
+            try:
+                if verificar_chut:
+                    play = input(" Parabéns você acertou!\nDeseja continuar jogando(S/N): ")
+                    laco_chut = False
+                else:
+                    chut = int(input("OPS...Tente novamente: "))
+            except ValueError:
+                print("Valor not int!...")
+               
+
+    elif not_play:
+        print("Vlw!!!")
+        laco_inicio =  False
     else:
-        resp = input("Valor digitado invalido, vamos jogar? (S/N)\n: ")
+        play = input("Resposta invalida, introduza um valor válido (S/N): ")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Problema git
+#git pull origin master --allow-unrelated-histories
